@@ -1,0 +1,16 @@
+name: AOS Trigger
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  trigger:
+    if: github.event.label.name == 'aos:ready'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Acknowledge AOS trigger
+        run: |
+          echo "Issue #${{ github.event.issue.number }} labeled with aos:ready"
+          echo "AOS pipeline would be triggered here"
+          echo "In production: call AOS engine API or webhook"
