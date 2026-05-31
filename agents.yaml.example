@@ -1,0 +1,28 @@
+github:
+  target_repo: brijeshspatel/aos-test-target
+  token_env: GITHUB_TOKEN
+
+llm:
+  default_backend: github_models
+  backends:
+    github_models:
+      base_url: https://models.inference.ai.azure.com
+      token_env: GITHUB_TOKEN
+    anthropic:
+      token_env: ANTHROPIC_API_KEY
+    openai:
+      token_env: OPENAI_API_KEY
+
+agents:
+  builder:
+    model: gpt-4o
+    prompt_path: prompts/builder.md
+  qa:
+    model: gpt-4o-mini
+    prompt_path: prompts/qa.md
+    test_command: pytest --tb=short -q --json-report
+
+pipeline:
+  max_iterations: 3
+  auto_merge: false
+  branch_prefix: "aos/"
